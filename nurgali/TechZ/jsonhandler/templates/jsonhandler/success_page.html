@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список документов</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <a href="{% url 'upload_json' %}" class="btn btn-primary">Импорт документа</a>
+
+            <form method="get" class="flex-grow-1 ml-3">
+                <div class="input-group">
+                    <div class="form-outline" data-mdb-input-init>
+                        <input type="search" id="form1" name="query" class="form-control" placeholder="Поиск..." value="{{ request.GET.query }}" />
+                    </div>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary" data-mdb-ripple-init>
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <h1>Список документов:</h1>
+        <br>
+        <br>
+
+        {% for kontragent_bin, otvetstvenny_docs in grouped_documents.items %}
+            <div class="scrollable-table">
+                <h2>Контрагент BIN: {{ kontragent_bin }}</h2>
+                {% for otvetstvenny_id, docs in otvetstvenny_docs.items %}
+                    <h2>Ответственный ID: {{ otvetstvenny_id }}</h2>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Номер документа</th>
+                                <th>Название</th>
+                                <th>Дата выставления</th>
+                                <th>НС Счета</th>
+                                <th>Договор</th>
+                                <th>Дата Счета</th>
+                                <th>Комментарий</th>
+                                <th>Статус</th>
+                                <th>Поставщик</th>
+                                <th>БИН</th>
+                                <th>Номер счета</th>
+                                <th>Банк</th>
+                                <th>Всего линий</th>
+                                <th>Сумма оплаты 1C</th>
+                                <th>Сумма неоплаты 1C</th>
+                                <th>Ответственный за закупку</th>
+                                <th>Утверждающий</th>
+                                <th>Группа проектов</th>
+                                <th>Валюта</th>
+                                <th>Направление</th>
+                                <th>Текст ошибки</th>
+                                <th>Оплачено</th>
+                                <th>Имя документа</th>
+                                <th>Статус документа</th>
+                                <th>Дата оплаты 1C</th>
+                                <th>Имя IC</th>
+                                <th>Имя CH</th>
+                                <th>Создано</th>
+                                <th>Номер документа 1</th>
+                                <th>Дата документа</th>
+                                <th>Комментарий</th>
+                                <th>Непредвиденный оригинальный документ</th>
+                                <th>Прикреплен</th>
+                                <th>Фактический номер документа</th>
+                                <th>Номер документа</th>
+                                <th>Сайт</th>
+                                <th>ID валюты</th>
+                                <th>Сумма возврата</th>
+                                <th>Дата возврата</th>
+                                <th>Номер акта</th>
+                                <th>Акт услуг</th>
+                                <th>Дата документа</th>
+                                <th>Дата обработки</th>
+                                <th>Количество</th>
+                                <th>Сумма</th>
+                                <th>Регион</th>
+                                <th>Сумма счета</th>
+                                <th>Согласовано безопасностью</th>
+                                <th>Сумма возврата KZT</th>
+                                <th>Всего линий KZT</th>
+                                <th>Сумма оплаты 1C KZT</th>
+                                <th>Сумма неоплаты 1C KZT</th>
+                                <th>Сумма неоплаты 1C KZT перекрестная</th>
+                                <th>Не закрытый баланс</th>
+                                <th>ID счета-фактуры</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for doc in docs %}
+                            <tr>
+                                <td>{{ doc.documentno }}</td>
+                                <td>{{ doc.name }}</td>
+                                <td>{{ doc.dateinvoiced|date:"d.m.Y" }}</td>
+                                <td>{{ doc.nscheta }}</td>
+                                <td>{{ doc.dogovor }}</td>
+                                <td>{{ doc.datascheta|date:"d.m.Y" }}</td>
+                                <td>{{ doc.coment }}</td>
+                                <td>{{ doc.status }}</td>
+                                <td>{{ doc.postavshik }}</td>
+                                <td>{{ doc.bin }}</td>
+                                <td>{{ doc.accountno }}</td>
+                                <td>{{ doc.bank }}</td>
+                                <td>{{ doc.totallines }}</td>
+                                <td>{{ doc.payamt1c }}</td>
+                                <td>{{ doc.notpayamt1c }}</td>
+                                <td>{{ doc.otvzakup }}</td>
+                                <td>{{ doc.utverditel }}</td>
+                                <td>{{ doc.gruppa_proekrov }}</td>
+                                <td>{{ doc.valyuta }}</td>
+                                <td>{{ doc.napravlenie }}</td>
+                                <td>{{ doc.error_txt }}</td>
+                                <td>{{ doc.sumpaid }}</td>
+                                <td>{{ doc.dname }}</td>
+                                <td>{{ doc.docstatus }}</td>
+                                <td>{{ doc.paydate1c|date:"d.m.Y" }}</td>
+                                <td>{{ doc.icname }}</td>
+                                <td>{{ doc.chname }}</td>
+                                <td>{{ doc.createdby }}</td>
+                                <td>{{ doc.nomdocument1 }}</td>
+                                <td>{{ doc.datadoc|date:"d.m.Y" }}</td>
+                                <td>{{ doc.komment }}</td>
+                                <td>{{ doc.nepredorigdoc }}</td>
+                                <td>{{ doc.isattached }}</td>
+                                <td>{{ doc.factnumdoc }}</td>
+                                <td>{{ doc.doc_number }}</td>
+                                <td>{{ doc.site }}</td>
+                                <td>{{ doc.c_currency_id }}</td>
+                                <td>{{ doc.refundamt }}</td>
+                                <td>{{ doc.daterefund }}</td>
+                                <td>{{ doc.actdocno }}</td>
+                                <td>{{ doc.docserviceact }}</td>
+                                <td>{{ doc.docdate|date:"d.m.Y" }}</td>
+                                <td>{{ doc.dateprocessed|date:"d.m.Y" }}</td>
+                                <td>{{ doc.quantity }}</td>
+                                <td>{{ doc.amount }}</td>
+                                <td>{{ doc.region }}</td>
+                                <td>{{ doc.invoiceamount }}</td>
+                                <td>{{ doc.security_agreed }}</td>
+                                <td>{{ doc.refundamtkzt }}</td>
+                                <td>{{ doc.totallineskzt }}</td>
+                                <td>{{ doc.payamt1ckzt }}</td>
+                                <td>{{ doc.notpayamt1ckzt }}</td>
+                                <td>{{ doc.notpayamt1ckztcross }}</td>
+                                <td>{{ doc.unclosedbalance }}</td>
+                                <td>{{ doc.c_invoice_id }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

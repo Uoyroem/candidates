@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Импорт JSON файла</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <script>
+    function validateFile() {
+        var fileInput = document.getElementById('id_json_file');
+        var filePath = fileInput.value;
+        var allowedExtensions = /(\.json)$/i;
+        if(!allowedExtensions.exec(filePath)){
+            alert('Пожалуйста, загрузите файл с расширением .json');
+            fileInput.value = '';
+            return false;
+        }
+        return true;
+    }
+</script>
+
+</head>
+<body class="bg-light">
+    <div class="container">
+        <h2 class="mt-5">Загрузите файл JSON</h2>
+
+        <form method="post" enctype="multipart/form-data" onsubmit="return validateFile()" class="mt-3">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.json_file.label_tag }}
+                {{ form.json_file }}
+            </div>
+            <button type="submit" class="btn btn-primary">Загрузить</button>
+        </form>
+
+        {% if messages %}
+        <div class="messages mt-3">
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <script>
+            window.onload = function() {
+                var messages = document.querySelector('.messages');
+                if (messages) {
+                    setTimeout(function(){
+                        messages.style.display = 'none';
+                    }, 4000);
+                }
+            };
+        </script>
+
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'docs/base.html' %}
+
+{% block title %}
+    Обновить документ
+{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="mb-3">
+        <a href="{% url 'docs:docs_list' %}" class="btn btn-secondary">Вернуться к списку</a>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            Обновление документа
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Обновить документ</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

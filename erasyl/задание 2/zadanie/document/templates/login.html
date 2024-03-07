@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <title>Title</title>
+</head>
+<body>
+
+
+    <div class="register-form">
+        <form action="{% url 'login' %}" method="post">
+            <label for="username">Логин</label>
+            <input type="text" id="username" name="username">
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password">
+
+            <button type="submit" >Кіру</button>
+            <a href="{% url 'register' %}">Сізде аккаунт жоқ па? Аккаунт құру</a>
+        </form>
+    </div>
+
+</body>
+</html>

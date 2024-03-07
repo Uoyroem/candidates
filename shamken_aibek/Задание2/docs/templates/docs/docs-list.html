@@ -1,0 +1,37 @@
+{% extends 'docs/base.html' %}
+
+{% block title %}
+    Список документов
+{% endblock %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+    
+<div class="container mt-4">
+    <div class="mb-3 text-end">
+        <a href="/docs/create" class="btn btn-primary">Создать новый документ</a>
+    </div>
+    <div class="list-group">
+        {% for dox in docs %}
+            <a href="{% url 'docs:docs_detail' pk=dox.pk %}" class="list-group-item list-group-item-action">
+                <h5 class="mb-1">{{ dox.name }}</h5>
+                <p class="mb-1">Создано: {{ dox.author_verbose }}</p>
+                <small>Дата создания: {{ dox.created_at|date:"H:i d/m/Y" }}</small>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+        {% else %}
+          <div class="container mt-4">
+            <div class="card">
+                <div class="card-header">
+                    Documents List
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Authenticate to see information</h5>
+                    
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

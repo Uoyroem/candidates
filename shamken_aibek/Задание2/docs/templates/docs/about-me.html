@@ -1,0 +1,28 @@
+{% extends 'docs/base.html' %}
+
+{% block title %}
+	About me
+{% endblock %}
+{% block login %}
+	<div class="text-end">
+        <a href="/login/">
+            <button type="button" class="btn btn-outline-light me-2">Login</button>
+        </a>
+        <a href="/login/">
+            <button type="button" class="btn btn-warning">Sign-up</button>
+        </a>
+    </div>
+{% endblock %}
+{% block body %}
+	<h1>User info:</h1>
+    {% if user.is_authenticated %}
+        <h2>Detail</h2>
+        <p>Username: {{ user.username }}</p>
+        <p>First name: {{ user.first_name }}</p>
+        <p>Last name: {{ user.last_name }}</p>
+        <p>Email: {{ user.email }}</p>
+        {% else %}
+        <h2>User is anonymous</h2>
+    	
+    {% endif %} 
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'docs/base.html' %}
+
+{% block title %}
+    Document details
+{% endblock %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+        <div class="container mt-4">
+            <div class="card">
+                <div class="card-header">
+                    Document Details
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ doc.name }}</h5>
+                    <p class="card-text"><strong>Description:</strong> {{ doc.description }}</p>
+                    <p class="card-text"><strong>Author:</strong> {{ doc.author }}</p>
+                    <p class="card-text"><strong>Time Created:</strong> {{ doc.created_at|date:"Y-m-d H:i" }}</p>
+                    <p class="card-text"><strong>Last Updated:</strong> {{ doc.updated_at|date:"Y-m-d H:i" }}</p>
+                    <a href="{{ doc.file.url }}" class="btn btn-primary">Download File</a>
+                    <a href="{% url 'docs:docs_update' pk=doc.pk %}" class="btn btn-secondary">Update Document</a>
+                    <a href="{% url 'docs:docs_list' %}" class="btn btn-light">Back to Documents List</a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+          <div class="container mt-4">
+            <div class="card">
+                <div class="card-header">
+                    Document Details
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Authenticate to see information</h5>
+                    
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+
+{% endblock %}

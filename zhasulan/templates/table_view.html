@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Document Table</h2>
+ <form method="get">
+    <input type="text" name="q" placeholder="Search..." value="{{ query }}">
+    <button type="submit">Search</button>
+  </form>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Document No</th>
+        <th>Name</th>
+        <th>Postavshik</th>
+        <th>Otvzakup</th>
+        <th>Utverditel</th>
+        <th>Date Invoiced</th>
+        <th>Nscheta</th>
+        <th>Dogovor</th>
+        <th>Datascheta</th>
+        <th>Coment</th>
+        <th>Status</th>
+        <th>Bin</th>
+        <th>Account No</th>
+        <th>Bank</th>
+        <th>Totallines</th>
+        <th>Payamt1c</th>
+        <th>Notpayamt1c</th>
+        <th>Gruppa Proekrov</th>
+        <th>Valyuta</th>
+        <th>Napravlenie</th>
+        <th>Error Txt</th>
+        <th>Sumpaid</th>
+        <th>Dname</th>
+        <th>Docstatus</th>
+        <th>Paydate1c</th>
+        <th>Icname</th>
+        <th>Chname</th>
+        <th>Createdby</th>
+        <th>Nomdocument1</th>
+        <th>Datadoc</th>
+        <th>Komment</th>
+        <th>Nepredorigdoc</th>
+        <th>Isattached</th>
+        <th>Factnumdoc</th>
+        <th>Doc Number</th>
+        <th>Site</th>
+        <th>C Currency Id</th>
+        <th>Refundamt</th>
+        <th>Daterefund</th>
+        <th>Actdocno</th>
+        <th>Docserviceact</th>
+        <th>Docdate</th>
+        <th>Dateprocessed</th>
+        <th>Quantity</th>
+        <th>Amount</th>
+        <th>Region</th>
+        <th>Invoiceamount</th>
+        <th>Security Agreed</th>
+        <th>Refundamtkzt</th>
+        <th>Totallineskzt</th>
+        <th>Payamt1ckzt</th>
+        <th>Notpayamt1ckzt</th>
+        <th>Notpayamt1ckztcross</th>
+        <th>Unclosedbalance</th>
+        <th>C Invoice Id</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for document in documents %}
+        <tr>
+          <td>{{ document.documentno }}</td>
+          <td>{{ document.name }}</td>
+          <td>{{ document.postavshik.name }}</td>
+          <td>{{ document.otvzakup }}</td>
+          <td>{{ document.utverditel}}</td>
+          <td>{{ document.dateinvoiced }}</td>
+          <td>{{ document.nscheta }}</td>
+          <td>{{ document.dogovor }}</td>
+          <td>{{ document.datascheta }}</td>
+          <td>{{ document.coment }}</td>
+          <td>{{ document.status }}</td>
+          <td>{{ document.bin }}</td>
+          <td>{{ document.accountno }}</td>
+          <td>{{ document.bank }}</td>
+          <td>{{ document.totallines }}</td>
+          <td>{{ document.payamt1c }}</td>
+          <td>{{ document.notpayamt1c }}</td>
+          <td>{{ document.gruppa_proekrov }}</td>
+          <td>{{ document.valyuta }}</td>
+          <td>{{ document.napravlenie }}</td>
+          <td>{{ document.error_txt }}</td>
+          <td>{{ document.sumpaid }}</td>
+          <td>{{ document.dname }}</td>
+          <td>{{ document.docstatus }}</td>
+          <td>{{ document.paydate1c }}</td>
+          <td>{{ document.icname }}</td>
+          <td>{{ document.chname }}</td>
+          <td>{{ document.createdby }}</td>
+          <td>{{ document.nomdocument1 }}</td>
+          <td>{{ document.datadoc }}</td>
+          <td>{{ document.komment }}</td>
+          <td>{{ document.nepredorigdoc }}</td>
+          <td>{{ document.isattached }}</td>
+          <td>{{ document.factnumdoc }}</td>
+          <td>{{ document.doc_number }}</td>
+          <td>{{ document.site }}</td>
+          <td>{{ document.c_currency_id }}</td>
+          <td>{{ document.refundamt }}</td>
+          <td>{{ document.daterefund }}</td>
+          <td>{{ document.actdocno }}</td>
+          <td>{{ document.docserviceact }}</td>
+          <td>{{ document.docdate }}</td>
+          <td>{{ document.dateprocessed }}</td>
+          <td>{{ document.quantity }}</td>
+          <td>{{ document.amount }}</td>
+          <td>{{ document.region }}</td>
+          <td>{{ document.invoiceamount }}</td>
+          <td>{{ document.security_agreed }}</td>
+          <td>{{ document.refundamtkzt }}</td>
+          <td>{{ document.totallineskzt }}</td>
+          <td>{{ document.payamt1ckzt }}</td>
+          <td>{{ document.notpayamt1ckzt }}</td>
+          <td>{{ document.notpayamt1ckztcross }}</td>
+          <td>{{ document.unclosedbalance }}</td>
+          <td>{{ document.c_invoice_id }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

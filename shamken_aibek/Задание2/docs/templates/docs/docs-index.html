@@ -1,0 +1,28 @@
+{% extends 'docs/base.html' %}
+
+{% block title %}
+    Docs index
+{% endblock %}
+
+
+{% block body %}
+<div class="container mt-4">
+    <div class="mb-3">
+        <a href="/docs/list" class="btn btn-primary">Список всех документов</a>
+    </div>
+    <div>
+        {% if doc_files %}
+        <ul class="list-group">
+            {% for file_name, file_dot in doc_files %}
+                <li class="list-group-item">File {{ file_name }} has <b>{{ file_dot }}</b> format</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <p>No files info</p>
+        {% endif %}
+    </div>
+    <div class="mt-3">
+        {% lorem 3 p random %}
+    </div>
+</div>
+{% endblock %}

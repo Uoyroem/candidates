@@ -1,0 +1,11 @@
+**/venv
+**/.venv
+**/.vscode
+**/__pycache__
+**/.idea
+**/*.rar
+**/*.zip
+**/media
+**/db.sqlite3
+**/migrations/*
+!**/migrations/__init__.py
