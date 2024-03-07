@@ -98,7 +98,7 @@ def import_data(request):
 
 def table_view(request):
     documents = Document.objects.all()
-
+    print(documents.count())
     query = request.GET.get('q')
 
     if query:
