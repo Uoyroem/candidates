@@ -10,3 +10,5 @@
 **/migrations/*
 !**/migrations/__init__.py
 **/conversion_logs.txt
+**/*.log
+**/*log*.txt
