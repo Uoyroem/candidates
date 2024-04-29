@@ -1,0 +1,3 @@
+[submodule "nurekedev"]
+	path = nurekedev
+	url = https://github.com/nurekedev/aurora-tasks
