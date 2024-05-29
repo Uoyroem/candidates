@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine3.16
+    environment:
+      POSTGRES_DB: documents_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5435:5432"
+
+  web:
+    build: .
+    command: bash -c "python manage.py migrate && python manage.py init && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./aurora_docs:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - USE_DOCKER=True
+
+volumes:
+  postgres_data:

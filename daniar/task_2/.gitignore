@@ -1,0 +1,6 @@
+.idea
+*.iml
+*.iws
+*.iwa
+__pycache__/
+aurora_docs/media

@@ -1,0 +1,16 @@
+FROM python:3.11
+
+ENV PYTHONUNBUFFERED 1
+
+WORKDIR /app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install -r requirements.txt && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY . .
+
+#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

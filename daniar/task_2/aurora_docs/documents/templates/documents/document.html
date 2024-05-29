@@ -1,0 +1,16 @@
+{% extends 'base_generic.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    <h2>Edit Document</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            Название: {{ form.title|as_crispy_field }}
+        Описание: {{ form.description|as_crispy_field }}
+        {{ form.file|as_crispy_field }}
+        <p>Автор: {{ form.instance.user.username }}</p>
+        <button type="submit" class="btn btn-primary">Обновить</button>
+    </form>
+    <a href="{% url 'delete_document' pk=form.instance.pk %}" class="btn btn-danger">Удалить этот документ</a>
+{% endblock %}
