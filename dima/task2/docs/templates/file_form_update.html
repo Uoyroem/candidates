@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Edit File</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            {% if error_message %}
+                <p class="alert alert-danger">{{ error_message }}</p>
+            {% endif %}
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Имя файла:</span>
+                <input type="text" value="{{ form.title.value }}" class="form-control" name="title" aria-describedby="inputGroup-sizing-default">
+              </div>
+            <div class='input-group'>
+                <span class="input-group-text" id="inputGroup-sizing-default">Описание:</span>
+                <textarea class="form-control" name="description" rows="4" cols="50">{{ form.description.value }}</textarea>
+            </div>
+        </div>
+        <button class="btn btn-primary mb-3" type="submit">Сохранить</button>
+    </form>
+    <a class="btn btn-danger" href="{% url 'file_list' %}">Отмена</a>
+{% endblock %}

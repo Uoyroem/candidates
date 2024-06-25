@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Удалить файл</h2>
+    <p>Вы действительо хотите удалить "{{ object.filename }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-primary mb-3" type="submit">Да, удалить</button>
+    </form>
+    <a class="btn btn-danger" href="{% url 'file_list' %}">Отмена</a>
+{% endblock %}

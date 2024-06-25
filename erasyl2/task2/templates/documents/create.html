@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Create a document{% endblock %}
+
+{% block content %}
+    <h2>Upload a document</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" id="title" class="form-control" name="title">
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea type="text" id="description" class="form-control" rows="5" style="resize: none" name="description"></textarea>
+          </div>
+            <div class="mb-3">
+            <label for="file" class="form-label">Document</label>
+            <input type="file" id="file" class="form-control" name="file">
+          </div>
+          <button type="submit" class="btn btn-primary" value="Create a document">Submit</button>
+    </form>
+{% endblock %}

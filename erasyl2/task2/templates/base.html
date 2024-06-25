@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="{% url 'list' %}" class="nav-link link-light">Documents</a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a href="{% url 'create' %}" class="nav-link link-light">Create a document</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        <span class="text-light">
+            {% if request.user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    Hello, {{ request.user.first_name }},
+                    <button type="submit" class="btn btn-outline-warning">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-outline-success login-btn">Login</a>
+            {% endif %}
+        </span>
+    </nav>
+    <div class="w-75 mx-auto mt-3">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

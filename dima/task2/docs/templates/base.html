@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <title>File Manager</title>
+</head>
+<body>
+    <div class="container">
+        <div class="">
+            <ul class="nav bg-primary">
+                <li class="nav-item">
+                    <a class="nav-link link-light" href="{% url 'file_list' %}">
+                        File Manager
+                    </a>
+                </li>
+            </ul>
+        </div>
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

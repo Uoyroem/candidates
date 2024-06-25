@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class='mt-3'>{{ object.filename }}</h2>
+    <p>Описание: {{ object.description }}</p>
+    <p><a class="btn btn-success" download href="{{ object.file.url }}">Скачать файл</a></p>
+    <a class="btn btn-primary" href="{% url 'file_update' object.pk %}">Изменить</a>
+    <a class="btn btn-danger" href="{% url 'file_delete' object.pk %}">Удалить</a>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="mb-3 mt-3 d-flex flex-row-reverse">
+        <a class="btn btn-success" href="{% url 'file_create' %}">Новый файл</a>
+    </div>
+    <ul class="list-group">
+        {% for file in files %}
+            <li class="list-group-item list-group-item-primary d-flex flex-row">
+                <div class="col"><a class='btn' href="{% url 'file_detail' file.pk %}">{{ file.filename }}</a></div>
+                <div>
+                    <a class="btn btn-primary" href="{% url 'file_update' file.pk %}">Изменить</a>
+                    <a class="btn btn-danger" href="{% url 'file_delete' file.pk %}">Удалить</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

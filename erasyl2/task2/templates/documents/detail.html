@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ document.title }}{% endblock %}
+
+{% block content %}
+    <div class="card-detail">
+      <img src="{% static 'assets/file.jpg' %}" style="width:100%">
+      <a href="{{ document.file.url }}"><h1>{{ document.title }}</h1></a>
+      <small><p>Uploaded by {{ document.user.first_name }} {{ document.user.last_name }} {{ document.uploaded_at.date }}</p></small>
+      <p>{{ document.description }}</p>
+      <p><a href="{% url 'edit' document.id %}" class="edit"><button class="edit">Edit</button></a><a href="{% url 'delete' document.id %}" class="delete"><button class="delete">Delete</button></a></p>
+    </div>
+{% endblock %}

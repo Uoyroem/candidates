@@ -1,0 +1,7 @@
+Django
+django-environ
+django-bootstrap-v5
+djangorestframework
+djangorestframework-simplejwt
+psycopg2-binary>=2.9.0
+psycopg2
